@@ -1,10 +1,13 @@
 # Nautobot Jobs Overview
 
-Nautobot is a network automation and orchestration platform that allows users to automate network tasks and workflows. 
+Nautobot is a network automation and orchestration platform that allows users to automate network tasks and workflows.
 
-One of the key features that that enable Nautobot to be an automation platform is the ability to run 'Jobs'. Each job is an executable script or program written in Python and stored within Nautobot.
+One of the key features that enables Nautobot to be an automation platform is the ability to run 'Jobs'. Each job is an executable script or program written in Python and stored within Nautobot.
 
-Jobs can extend Nautobot's functionality by creating custom automation scripts to perform tasks such as configuration management, data validation, report generation, and more. 
+> [!NOTE]
+> If you're familiar with Netbox, Nautobot Jobs unify and supersede the functionality previously provided by Netbox "custom scripts" and "reports".
+
+Jobs can extend Nautobot's functionality by creating custom automation scripts to perform tasks such as configuration management, data validation, report generation, and more.
 
 For today's challenge, we will execute a predefined job on [demo.nautobot.com](https://demo.nautobot.com/) to familiarize ourselves with the basic usage of Jobs. We will also learn about the advantages of using Nautobot Jobs for your automation tasks.
 
