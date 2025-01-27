@@ -191,7 +191,7 @@ canceled
 
 [Containerlab](https://containerlab.dev/) is a docker-based network lab environment we will use for testing against network devices. 
 
-Network lab is not required for all challenges, but included here to provide the necessary information if needed. For more detailed instruction, please reference [Lab 9 README](../../Day009_Python_Scritp_to_Jobs_Part_1/README.md). 
+Network lab is not required for all challenges, but included here to provide the necessary information if needed. For more detailed instruction, please reference [Lab 9 README](../../Day009_Python_Script_to_Jobs_Part_1/README.md). 
 
 Containerlab is already installed in our environment, we can check the version installed: 
 
@@ -262,15 +262,15 @@ We will need to upload the cEOS image as indicated in the topology file.
 
 Once registered, we can download the image via "Support -> Software Download": 
 
-![arista_1](../../Day009_Python_Scritp_to_Jobs_Part_1/images/arista_1.png)
+![arista_1](../../Day009_Python_Script_to_Jobs_Part_1/images/arista_1.png)
 
 We should pick one of the "cEOS Lab" software image, in the screenshot, we show ```cEOS64-lab-4-32.0F.tar.xz```: 
 
-![arista_2](../../Day009_Python_Scritp_to_Jobs_Part_1/images/arista_2.png)
+![arista_2](../../Day009_Python_Script_to_Jobs_Part_1/images/arista_2.png)
 
 Once that is downloaded, we can right-click on the Explorer area and choose to upload the image: 
 
-![arista_3](../../Day009_Python_Scritp_to_Jobs_Part_1/images/arista_3.png)
+![arista_3](../../Day009_Python_Script_to_Jobs_Part_1/images/arista_3.png)
 
 Depending on the Internet speed, the upload time might take a minute or two. Once the image is uploaded, we can use the following command to import the image to docker: 
 
@@ -347,7 +347,7 @@ ceos-01>exit
 Connection to 172.17.0.3 closed.
 ```
 
-We can proceed with the challenges that required network devices to test.
+We can proceed with the challenges that require network devices to test.
 
 When required, we can shutdown the lab with the ```destroy``` command: 
 
