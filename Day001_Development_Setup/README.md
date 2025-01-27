@@ -107,6 +107,15 @@ Running docker compose command "build"
 #24 DONE 0.0s
 ```
 
+- A successful```invoke build``` completion, will output a docker image for Nautobot, check this with ```docker ps```. If no images are visible, try the invoke process again and/or request help in the [Nautobot Slack](https://networktocode.slack.com/archives/C01UJ9ZQZ3D).
+
+```shell
+(nautobot-docker-compose-py3.10) @user ➜ ~/nautobot-docker-compose (main) $ docker images
+REPOSITORY                         TAG         IMAGE ID       CREATED         SIZE
+yourrepo/nautobot-docker-compose   local       aae299e33a72   2 minutes ago   1.11GB
+(nautobot-docker-compose-py3.10) @moogzy ➜ ~/nautobot-docker-compose (main) $ 
+```
+
 - We are now ready to import the initial datasets:
 
 ```shell
@@ -137,6 +146,20 @@ ALTER TABLE
 ALTER TABLE
 ALTER TABLE
 ALTER TABLE
+```
+
+- A successful ```invoke db-import``` completion, will output a `postgres` image and a running/healthy `nautobot_docker_compose-db-1` container. If either of these aren't visible, try the invoke process again and/or request help in the [Nautobot Slack](https://networktocode.slack.com/archives/C01UJ9ZQZ3D).
+
+```shell
+(nautobot-docker-compose-py3.10) @user ➜ ~/nautobot-docker-compose (main) $ docker images
+REPOSITORY                         TAG         IMAGE ID       CREATED         SIZE
+yourrepo/nautobot-docker-compose   local       aae299e33a72   2 minutes ago   1.11GB
+postgres                           13-alpine   844163899fc2   7 weeks ago     268MB
+(nautobot-docker-compose-py3.10) @user ➜ ~/nautobot-docker-compose (main) $ 
+
+(nautobot-docker-compose-py3.10) @user ➜ ~/nautobot-docker-compose (main) $ docker ps
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                    PORTS      NAMES
+bde9c3850113   postgres:13-alpine   "docker-entrypoint.s…"   31 seconds ago   Up 30 seconds (healthy)   5432/tcp   nautobot_docker_compose-db-1
 ```
 
 - Now we can start the nautobot containers with ```invoke debug```. This will start Nautobot in debug mode and display all message on the screen: 
@@ -178,7 +201,11 @@ The new window should direct you to the forwarded port where Nautobot UI can be 
 > [!TIP]
 > Not the most secure username and password, I know, you might get a warning prompt depending on the browser. The port and instance is *not* open to the public. 
 
-We now have a working Nautobot instance in Codepsace. Let's go back to the terminal window and use ```Ctl+C``` to terminate the Nautobot instance:
+We now have a working Nautobot instance in Codepsace. 
+
+## Stop Nautobot and the necessary components
+
+- Let's go back to the terminal window and use ```Ctl+C``` to terminate the Nautobot instance:
 
 ```shell
 ...
@@ -204,7 +231,15 @@ Gracefully stopping... (press Ctrl+C again to force)
 canceled
 ```
 
-Let's go ahead and stop Codespace as we do not want to incur unnecessary charges when we are not using it. We will navigate to your [Codespace](https://github.com/codespaces) settings and stop the Codespace:
+- You can confirm that all containers have been successfully terminated with ```docker ps```:
+
+```shell
+(nautobot-docker-compose-py3.10) @user ➜ ~/nautobot-docker-compose (main) $ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+(nautobot-docker-compose-py3.10) @moogzy ➜ ~/nautobot-docker-compose (main) $ 
+```
+
+- Let's go ahead and stop Codespace as we do not want to incur unnecessary charges when we are not using it. We will navigate to your [Codespace](https://github.com/codespaces) settings and stop the Codespace:
 
 ![Codespace_Screenshot_8.png](images/Codespace_Screenshot_8.png)
 
