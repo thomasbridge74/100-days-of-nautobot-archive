@@ -6,7 +6,7 @@ Let's navigate to [https://github.com/codespaces/](https://github.com/codespaces
 
 ![rebuild_codespace_1.png](../Lab_Setup/lab_related_notes/images/rebuild_codespace_1.png)
 
-Due to what I view as a bug when Codespace is restarted, the Docker daemon does not start automatically. We need to rebuild codespace when this occurs.
+Due to what seems to be a bug, the Docker daemon does not start automatically when Codespace is restarted. To resolve this issue, we need to rebuild the Codespace.
 
 ```
 @ericchou1 ➜ ~ $ docker ps
