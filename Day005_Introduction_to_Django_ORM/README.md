@@ -265,6 +265,7 @@ We can use the `get_or_create` method to create the location, remember we mentio
 <Location: Charlotte>
 >>> location.name
 'Charlotte'
+>>> location.validated_save()
 >>> created
 True
 ```
