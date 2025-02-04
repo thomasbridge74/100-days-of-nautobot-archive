@@ -100,6 +100,15 @@ For more examples and ideas, visit:
 
 ```
 
+## Job File Creation and Permission
+
+Nautobot Jobs needs to be installed under `JOBS_ROOT` path as specified in [Job Developer Guide](https://docs.nautobot.com/projects/core/en/stable/development/jobs/#installing-jobs). 
+
+In our labs using `nautobot-docker-compose`, we were able to create the job file under the `/jobs` folder because we map the directory to the `JOBS_ROOT` in the docker container. This is illustrated in [Day 3](https://github.com/nautobot/100-days-of-nautobot/tree/main/Day003_Hello_Jobs_Part_1) `option 1` of `Creating the Job File` section. 
+
+However, it is worth noting that `option 2` in the same section reflects more of the production `nautobot` environment where we create the jobs files under `JOBS_ROOT` in the `nautobot` environment, in this case, nautobot docker container. After the job file is created and permission changed, as stated in the example, you will need to open the file under the dock container file directory as illustrated in this [illustration](https://github.com/nautobot/100-days-of-nautobot/blob/main/Day003_Hello_Jobs_Part_1/images/docker_access_1.png).  
+
+
 ## Rename Codespace Instances
 
 By default, the codespace name are randomly assigned. They can be renamed after they are launched by click on the ```...``` option and choose "Rename": 
