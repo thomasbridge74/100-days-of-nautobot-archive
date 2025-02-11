@@ -1,4 +1,4 @@
-# 100-days-of-nautobot
+# 100-days-of-nautobot-challenge
 
 Hello everybody, welcome to the "100 Days of Nautobot challenge." This is a self-directed, guided journey for anybody who wants to build a strong and consistent network automation skills using Nautobot. The challenges use social accountability and transparency to form network automation skills with Nautobot. 
 
@@ -92,5 +92,8 @@ Here is a partial list of all the contributors:
 - Cristian Sirbu
 - Kristee Trelli
 - Jeff Bradbury 
-- Dwayne Camacho 
+- Israel Pineda (author of Days 21, 22)
+- Dwayne Camacho (co-author of Days 31, 34 - 39)
+- DJ Howard (co-author of Days 31, 34 - 39)
+- Byrns Baker (author of Days 23, 27, 33)
 - Nautobot Core Team & Community
