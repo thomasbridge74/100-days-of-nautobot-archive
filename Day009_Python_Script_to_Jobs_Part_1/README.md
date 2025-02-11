@@ -9,14 +9,14 @@ In many of the future challenges, we will need to have a network lab our Nautobo
 
 ![codespace_machine_types](images/codespace_machine_types.png)
 
-Again, as we stated in the `warnign` box above, s we add more containers to the Codespace environment, you will find the CPU running high during the launch. I have successfully completed the lab with the `2-core` machine types, but I had to wait a while for the CPU to normalize. 
+As we stated in the `important` section above, if we add more containers to the Codespace environment, we will find the CPU running high during the launch. I have successfully completed the lab with the `2-core` machine types, but I had to wait a while for the CPU to normalize. 
 
 ## Lab Environment Setup
 
-The Nautobot portion of the lab environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md), below is a summary of the steps, please consult the guide for a detailed background if needed. 
+The Nautobot portion of the lab environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md). Below is a summary of the steps; consult the guide for a detailed background, if needed. 
 
 > [!TIP]
-> If you have stopped the Codespace environment and restart again but found the Docker daemon stopped working, please follow the steps in the setup guide to rebuild the environment. 
+> If you have stopped the Codespace environment and restart again but found the Docker daemon has stopped working, please follow the steps in the setup guide to rebuild the environment.
 
 Here is a review of the steps to start Nautobot: 
 
@@ -28,13 +28,13 @@ $ invoke db-import
 $ invoke debug
 ```
 
-Let set up the network lab. 
+Let's set up the network lab. 
 
 ## Containerlab
 
 [Containerlab](https://containerlab.dev/) is a way to build a virtual lab using network operating system with containers. 
 
-As part of our setup, we already installed Containerlab executables. We can check the version that was installed: 
+As part of our setup, the Containerlab executables have already been installed. We can run the `version` command to get the version to test the installation was successful:
 
 ```
 @ericchou1 ➜ ~ $ containerlab version
@@ -165,12 +165,12 @@ Run 'containerlab version upgrade' to upgrade or go check other installation opt
 +---+------------+--------------+--------------+------+---------+---------------+--------------+
 | # |    Name    | Container ID |    Image     | Kind |  State  | IPv4 Address  | IPv6 Address |
 +---+------------+--------------+--------------+------+---------+---------------+--------------+
-| 1 | bos-acc-01 | a7a817e93157 | ceos:4.32.0F | ceos | running | 172.17.0.3/16 | N/A          |
-| 2 | bos-rtr-01 | 67cdc82c7f46 | ceos:4.32.0F | ceos | running | 172.17.0.2/16 | N/A          |
+| 1 | bos-acc-01 | a7a817e93157 | ceos:4.32.0F | ceos | running | 172.17.0.2/16 | N/A          |
+| 2 | bos-rtr-01 | 67cdc82c7f46 | ceos:4.32.0F | ceos | running | 172.17.0.3/16 | N/A          |
 +---+------------+--------------+--------------+------+---------+---------------+--------------+
 ```
 
-Take a note of the IP addresses shown, in the next step, we will use a simple Netmiko script to perform show commands. 
+Take a note of the IP addresses shown; in the next step, we will use a simple Netmiko script to perform show commands. 
 
 ## Netmiko Python Script
 
