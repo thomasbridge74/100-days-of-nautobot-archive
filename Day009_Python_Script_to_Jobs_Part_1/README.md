@@ -9,11 +9,11 @@ In many of the future challenges, we will need to have a network lab our Nautobo
 
 ![codespace_machine_types](images/codespace_machine_types.png)
 
-As we stated in the `important` section above, if we add more containers to the Codespace environment, we will find the CPU running high during the launch. I have successfully completed the lab with the `2-core` machine types, but I had to wait a while for the CPU to normalize. 
+As we stated in the `important` section above, if we add more containers to the Codespace environment, we may find high CPU usage during the launch. I have successfully completed the lab with the `2-core` machine type, but it did take some time before the CPU usage normalized.
 
 ## Lab Environment Setup
 
-The Nautobot portion of the lab environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md). Below is a summary of the steps; consult the guide for a detailed background, if needed. 
+The Nautobot portion of the lab environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md). Below is a summary of the steps. Consult the guide for a detailed background, if needed. 
 
 > [!TIP]
 > If you have stopped the Codespace environment and restart again but found the Docker daemon has stopped working, please follow the steps in the setup guide to rebuild the environment.
@@ -34,7 +34,7 @@ Let's set up the network lab.
 
 [Containerlab](https://containerlab.dev/) is a way to build a virtual lab using network operating system with containers. 
 
-As part of our setup, the Containerlab executables have already been installed. We can run the `version` command to get the version to test the installation was successful:
+As part of our setup, the Containerlab executables have already been installed. We can run the `version` command as a way to test if the installation was successful:
 
 ```
 @ericchou1 ➜ ~ $ containerlab version
@@ -64,32 +64,32 @@ Once registered, you can download the image via "Support -> Software Download":
 > [!TIP]
 > Please also see [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md) for instructions on how to download Arista cEOS image
 
-We should pick one of the "cEOS Lab" software image, in the screenshot, we show ```cEOS64-lab-4-32.0F.tar.xz```: 
+Pick one of the "cEOS Lab" software image, in the screenshot, we show ```cEOS64-lab-4-32.0F.tar.xz```: 
 
 ![arista_2](images/arista_2.png)
 
-Once that is downloaded, we can right-click on the Explorer area and choose to upload the image: 
+Once the software image is downloaded, right-click on the Explorer area and choose to upload the image: 
 
 ![arista_3](images/arista_3.png)
  
 
-Depending on the Internet speed, the upload time might take a minute or two. Once the image is uploaded, we can use the following command to import the image to docker: 
+Depending on your internet speed, the upload time might take a few minutes. Once the image is uploaded, use the following command to import the image to Docker: 
 
 > [!IMPORTANT]
-> Remember to substitute the version matches the version downloaded. 
+> Remember to substitute the version number that matches the version you downloaded.
 
 > [!WARNING]
-> In the example below, the file was already unzipped, it does not have the `.zip` file extension. Please include the `.zip` extension as necessary. 
+> In the example below, the file was already unzipped, it does not have the `.xz` file extension. Please include the extension, if necessary. 
 
 ```
 docker import cEOS64-lab-4.32.0F.tar ceos:4.32.0F
 ```
 
-We are ready to launch our lab in the next step. 
+Now we are ready to launch our lab!
 
 ## Launching Containerlab
 
-We have prepared a ```clab``` folder under the ```100-days-of-nautobot``` directory containing the lab topology and startup configurations: 
+We have prepared a ```clab``` directory under the ```100-days-of-nautobot``` directory containing the lab topology and startup configurations: 
 
 ```
 @ericchou1 ➜ ~/100-days-of-nautobot-challenge (main) $ cd clab/
@@ -97,10 +97,10 @@ We have prepared a ```clab``` folder under the ```100-days-of-nautobot``` direct
 ceos-lab.clab.yml  startup-configs
 ```
 
-For this initial test, we can comment out the NYC devices and only launch the BOS devices to save time and resources. 
+For this initial test, we can comment out the `NYC` devices and only launch the `BOS` devices to save time and resources. 
 
 > [!IMPORTANT]
-> Please use the same image name that was used in the last step if the version is different. 
+> Use the same image name that was used in the previous step if different than what was used in this document!
 
 ```yaml
 ---
@@ -170,13 +170,13 @@ Run 'containerlab version upgrade' to upgrade or go check other installation opt
 +---+------------+--------------+--------------+------+---------+---------------+--------------+
 ```
 
-Take a note of the IP addresses shown; in the next step, we will use a simple Netmiko script to perform show commands. 
+Take note of the IP addresses shown; in the next step, we will use a simple Netmiko script to perform ```show``` commands.
 
 ## Netmiko Python Script
 
-Nautobot leverages the multivendor, open-source [Netmiko](https://pynet.twb-tech.com/blog/netmiko-python-library.html) library created by Kirk Byers to interact with network devices. As such, it is already included in our Nautobot instance. 
+Nautobot leverages the multivendor, open-source [Netmiko](https://pynet.twb-tech.com/blog/netmiko-python-library.html) library created by Kirk Byers to interact with network devices. As such, it is already included in our Nautobot instance.
 
-Let's go ahead and try it out on the Nautobot container. Let's try it out in nbshell: 
+Let's go ahead and try out ```netmiko``` on the Nautobot container using ```nbshell```:
 
 ```
 $ cd nautobot-docker-compose/
@@ -184,13 +184,13 @@ $ poetry shell
 $ invoke nbshell
 ```
 
-We can just follow the simple example illustrated on the [Netmiko Getting Started](https://pynet.twb-tech.com/blog/netmiko-python-library.html) section: 
+We can follow the simple example illustrated on the [Netmiko Getting Started](https://pynet.twb-tech.com/blog/netmiko-python-library.html) section: 
 
 ```
 >>> from netmiko import ConnectHandler
 >>> net_connect = ConnectHandler( 
 ...     device_type="arista_eos", 
-...     host="172.17.0.3", 
+...     host="172.17.0.2", 
 ...     username="admin", 
 ...     password="admin", 
 ... )
@@ -202,7 +202,7 @@ We can just follow the simple example illustrated on the [Netmiko Getting Starte
 'ceos-01>'
 ```
 
-Fantastic, we can communicate with the device. Let's try to grab the ```show version``` output from the device: 
+Fantastic! We can communicate with the device. Let's grab the ```show version``` output from the device: 
 
 ```
 >>> output = net_connect.send_command("show version")
@@ -228,9 +228,9 @@ Total memory: 8119864 kB
 Free memory: 1232352 kB
 ```
 
-I will leave it to you to repeat the same step for the other device ```172.17.0.2``` to test the lab reachability. 
+I will leave it to you to repeat the same step for the other device ```172.17.0.3``` to test the lab reachability. 
 
-After you are done with today's work, shutdown Containerlab with: 
+After you are done with today's work, shutdown Containerlab using the ```destroy``` command: 
 
 ```
 $ cd clab/
@@ -241,7 +241,7 @@ $ sudo containerlab destroy --topo ceos-lab.clab.yml
 
 Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/). 
 
-Go ahead and post the output of the show output of the Netmiko command on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode`, so we can share your progress! 
+Go ahead and post the output of the Netmiko show command on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode`, so we can share your progress! 
 
 In tomorrow's challenge, we integrate this script into our Nautobot Job. See you tomorrow! 
 
