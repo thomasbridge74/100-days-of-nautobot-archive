@@ -129,7 +129,7 @@ register_jobs(
 )
 ```
 
-Notice we need to pass in the variables, in this case "messages" and "age", to the `run()` method in order to be used. 
+Notice we need to pass in the variables, in this case "messages" and "days", to the `run()` method in order to be used. 
 
 We should be able to see the additional fields on the run job page when we try to run the job again: 
 
