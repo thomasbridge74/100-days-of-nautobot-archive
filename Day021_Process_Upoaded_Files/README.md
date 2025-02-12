@@ -17,10 +17,15 @@ In today's challenge, we will allow the users to upload a custom file via the [F
 
 The environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md), below is a summary of the steps, please consult the guide for a detailed background if needed. 
 
-> [!TIP]
-> If you have stopped the Codespace environment and restart again but found the Docker daemon stopped working, please follow the steps in the setup guide to rebuild the environment. 
+If you had stopped and restarted Codespace instance, you can restart the instance and skip `invoke build` and `invoke db-import`: 
 
-We will follow the same steps to start Nautobot:
+```
+$ cd nautobot-docker-compose/
+$ poetry shell
+$ invoke debug
+```
+
+Otherwise, follow the same steps to start Nautobot in Codespace:
 
 ```
 $ cd nautobot-docker-compose/
@@ -34,13 +39,15 @@ The environment is now setup for today's challenge.
 
 ## Data File
 
-Let's start by creating a simple file that we will use for our next examples. It is not uncommon that your organization has data in files or that exports files from other systems into a file. Usually, that data can be big and complicated, but we will start easily here. Later, we can always upload a bigger file. Let's create a text file with the CSV extension. CSV (Comma Separated Values) files are regular text files that you can open with your favorite text editor. This kind of files are used a lot to store data, we could use a different extension such as TXT but CSV will trigger some extra functionalities in some editors so let's use that.
+Let's start by creating a simple file that we will use for our next examples. It is not uncommon that your organization has data in files or that exports files from other systems into a file. Usually, that data can be big and complicated, but we will start easily here. Later, we can always upload a bigger file. 
+
+Let's create a text file with the CSV extension. CSV (Comma Separated Values) files are regular text files that you can open with your favorite text editor. This kind of files are used a lot to store data, we could use a different extension such as TXT but CSV will trigger some extra functionalities in some editors so let's use that.
 
 File content:
 ```
-  1 name,role,model,location
-  2 sw-indianapolis,Switch,vEOS,Indianapolis
-  3 rt-indianapolis,Router,vEOS,Indianapolis
+name,role,model,location
+sw-indianapolis,Switch,vEOS,Indianapolis
+rt-indianapolis,Router,vEOS,Indianapolis
 ```
 
 ## File Upload Job
@@ -60,11 +67,11 @@ from nautobot.apps.jobs import Job, register_jobs, FileVar
 
 class FileUpload(Job):
     class Meta:
-        name = "Text File Upload"
-        description = "Please select a text file for upload"
+        name = "CSV File Upload"
+        description = "Please select a CSV file for upload"
 
     file = FileVar(
-        description="Text File to upload",
+        description="CSV File to upload",
     )
 
     def run(self, file):
@@ -81,7 +88,12 @@ register_jobs(
 )
 ```
 
-As you progress and create more complex jobs you will find that there is a wide range of predefined variables types that help you to create your job forms. You can check the current list of supported job variables in the following [link](https://docs.nautobot.com/projects/core/en/stable/development/jobs/?h=filevar#variables). In our particular case, we are using FileVar. This variable allows you to easily receive a file from the user and to pass that file to the run method of the job.
+> [!TIP]
+> Don't forget to perform `invoke post-upgrade` and enable the job in the GUI.
+
+As you progress and create more complex jobs you will find that there is a wide range of predefined variables types that help you to create your job forms. You can check the current list of supported job variables in the following [link](https://docs.nautobot.com/projects/core/en/stable/development/jobs/?h=filevar#variables). 
+
+In our particular case, we are using `FileVar`. This variable allows you to easily receive a file from the user and to pass that file to the `run()` method of the job.
 
 Once we have created the job, let's go to the Job menu on Nautobot GUI and execute the job. Do not forget to enable the job first.
 
@@ -99,7 +111,7 @@ In our simple upload, we did not do any file type checking. In production, it wo
 
 Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/). 
 
-Go ahead and post a screenshot of the successful execution of the new job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode` so we can share your progress! 
+Go ahead and post a screenshot of the successful execution of the new job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode`, so we can share your progress! 
 
 In tomorrow's challenge, we will build on this file and add a new job to process the CVS file and create objects in Nautobot based on the contents of the file. See you tomorrow!
 
