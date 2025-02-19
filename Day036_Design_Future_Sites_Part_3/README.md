@@ -1,47 +1,13 @@
 # Design Future Sites (Part 3) 
 
-- Use Job to populate future site
-
-
-## Environment Setup
-
-The environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md), below is a summary of the steps, please consult the guide for a detailed background if needed. 
-
-> [!TIP]
-> If you have stopped the Codespace environment and restart again but found the Docker daemon stopped working, please follow the steps in the setup guide to rebuild the environment. 
-
-We will follow the same steps to start Nautobot: 
-
-```
-$ cd nautobot-docker-compose/
-$ poetry shell
-$ invoke build
-$ invoke db-import
-$ invoke debug
-```# Design Future Sites (Part 3) 
-
-- Use Job to populate future site
-
+Are you ready to build on previous 2 days? Let's go! 
 
 ## Environment Setup
 
-The environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md), below is a summary of the steps, please consult the guide for a detailed background if needed. 
-
-> [!TIP]
-> If you have stopped the Codespace environment and restart again but found the Docker daemon stopped working, please follow the steps in the setup guide to rebuild the environment. 
-
-We will follow the same steps to start Nautobot: 
-
-```
-$ cd nautobot-docker-compose/
-$ poetry shell
-$ invoke build
-$ invoke db-import
-$ invoke debug
-```
+We will continue to build from where we left off in [Day 35](../Day035_Design_Future_Sites_Part_2/README.md). 
 
 > [!IMPORTANT]
-> Creating mappings for Arista EOS and network drivers in our database is the final crucial step before we can get to creating a site. The past two days has been focused on setting up our environment with objects that would already exist in a production setting. Now, we have one more step to do to ensure everything is properly mapped before moving forward.
+> Creating mappings for Arista EOS and network drivers in our database is the final crucial step before we can get to creating a site. The past two days has been focused on setting up our environment with objects that would already exist in a production setting. Now, we have one more step to take to ensure everything is properly mapped before moving forward.
 
 ## Map Network Drivers
 
@@ -1372,10 +1338,10 @@ That was a lot! But as promised, let’s keep the motivation going—time to upd
 
 Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/). 
 
-Go ahead and post a screenshot of the your newly created site on a social media of your choice, make sure you use the tags `#100DaysOfNautobot` `#JobsToBeDone` and tag @networktocode so we can share your progress! 
+Go ahead and post your thoughts for the past 3 days on a social media of your choice, make sure you use the tags `#100DaysOfNautobot` `#JobsToBeDone` and tag @networktocode, so we can share your progress! 
 
-In tomorrow's challenge, we will work on Day 37 Tasks! See you tomorrow!
+In tomorrow's challenge, we will work on Day 37 and Part 4 Tasks! See you tomorrow!
 
-[LinkedIn](https://www.linkedin.com/) 
+[X/Twitter](<https://twitter.com/intent/tweet?url=https://github.com/networktocode/100-days-of-nautobot-challenge&text=I+jst+completed+Day+36+of+the+100+days+of+nautobot+challenge+!&hashtags=100DaysOfNautobot,JobsToBeDone>)
 
-[X/Twitter](https://x.com/home) 
+[LinkedIn](https://www.linkedin.com/) (Copy & Paste: I just completed Day 36 of 100 Days of Nautobot, https://github.com/networktocode/100-days-of-nautobot-challenge, challenge! @networktocode #JobsToBeDone #100DaysOfNautobot)
