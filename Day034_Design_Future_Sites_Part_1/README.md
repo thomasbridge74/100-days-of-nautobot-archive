@@ -1,6 +1,8 @@
 # Design Future Sites (Part 1)
 
-- Use Job to populate future site
+Congratulations on completing 33 days of Nautobot Job! We now have all the tools we need to tackle bigger jobs. Today marks the first of a 6-day series for what would be an iterative process of putting together a job to design a future site. 
+
+Are you ready to get started? Let's begin be setting up the environment. 
 
 ## Environment Setup
 
@@ -380,16 +382,23 @@ register_jobs(CreatePop)
 
 ```
 
+> [!TIP]
+> Don't forget to run `invoke post-upgrade` to register the job. 
+
+Once the job is enabled, we can run the job to see the results: 
+
+![day_34_job_result](images/day_34_job_result.png)
+
 We will continue with the prerequisites tomorrow by adding DeviceType configuration to the job.
 
 ## Day 34 To Do
 
 Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/).
 
-Go ahead and post a screenshot of the successful execution of the new job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode` so we can share your progress!
+Go ahead and post a screenshot of the successful execution of the newly created job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode`, so we can share your progress!
 
 In tomorrow's challenge, we will enhance our Site creation Job by adding DeviceType creation. See you tomorrow!
 
-[LinkedIn](https://www.linkedin.com/)
+[X/Twitter](<https://twitter.com/intent/tweet?url=https://github.com/networktocode/100-days-of-nautobot-challenge&text=I+jst+completed+Day+34+of+the+100+days+of+nautobot+challenge+!&hashtags=100DaysOfNautobot,JobsToBeDone>)
 
-[X/Twitter](https://x.com/home)
+[LinkedIn](https://www.linkedin.com/) (Copy & Paste: I just completed Day 34 of 100 Days of Nautobot, https://github.com/networktocode/100-days-of-nautobot-challenge, challenge! @networktocode #JobsToBeDone #100DaysOfNautobot)
