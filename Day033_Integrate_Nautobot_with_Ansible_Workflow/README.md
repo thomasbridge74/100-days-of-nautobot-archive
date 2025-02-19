@@ -30,8 +30,11 @@ For this lab we only needed the `bos-acc-01` devices:
 $ cd ~/100-days-of-nautobot/clab/
 $ sudo containerlab deploy --topo ceos-lab.clab.yml --node-filter bos-acc-01
 ```
-## Nautobot as an Ansible Dynamic Inventory
+
 The environment is now set up for today’s challenge.  
+
+## Nautobot as an Ansible Dynamic Inventory
+
 For today’s challenge, we will use Nautobot as a dynamic inventory and create a couple of playbooks to modify the configuration on `bos-acc-01`.
 
 First, let’s set up the inventory file to use Nautobot’s inventory module. 
