@@ -393,7 +393,7 @@ We will continue with the prerequisites tomorrow by adding DeviceType configurat
 
 ## Day 34 To Do
 
-Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/).
+Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/). Because this is a 6-day series, if you delete the instance you will need to complete the previous day's code again. We recommend just stop the instance and restart it again tomorrow. 
 
 Go ahead and post a screenshot of the successful execution of the newly created job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode`, so we can share your progress!
 
