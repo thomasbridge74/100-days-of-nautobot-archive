@@ -1,24 +1,6 @@
 # Design Future Sites (Part 4) 
 
-- Use Job to populate future site
-
-
-## Environment Setup
-
-The environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md), below is a summary of the steps, please consult the guide for a detailed background if needed. 
-
-> [!TIP]
-> If you have stopped the Codespace environment and restart again but found the Docker daemon stopped working, please follow the steps in the setup guide to rebuild the environment. 
-
-We will follow the same steps to start Nautobot: 
-
-```
-$ cd nautobot-docker-compose/
-$ poetry shell
-$ invoke build
-$ invoke db-import
-$ invoke debug
-```
+We are halfway through the 6-part series in creating a job to design future sites. 
 
 ## Let's continue from where we left off on Day 36
 
@@ -835,6 +817,6 @@ Go ahead and post a screenshot of the successful creation of your prefixes and r
 
 For Day 38, we'll tackle creating devices and assigning VLANs.  See you tomorrow! 
 
-[LinkedIn](https://www.linkedin.com/) 
+[X/Twitter](<https://twitter.com/intent/tweet?url=https://github.com/networktocode/100-days-of-nautobot-challenge&text=I+jst+completed+Day+37+of+the+100+days+of+nautobot+challenge+!&hashtags=100DaysOfNautobot,JobsToBeDone>)
 
-[X/Twitter](https://x.com/home) 
+[LinkedIn](https://www.linkedin.com/) (Copy & Paste: I just completed Day 37 of 100 Days of Nautobot, https://github.com/networktocode/100-days-of-nautobot-challenge, challenge! @networktocode #JobsToBeDone #100DaysOfNautobot)
