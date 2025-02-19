@@ -345,6 +345,12 @@ VLAN_INFO = {
 CUSTOM_FIELDS = {
     "role": {"models": [Interface], "label": "Role"},
 }
+# Retrieve the content type for Prefix and VLAN models.
+
+prefix_ct = ContentType.objects.get_for_model(Prefix)
+vlan_ct = ContentType.objects.get_for_model(VLAN)
+
+####DAY35####
 DEVICE_TYPES_YAML = [
     """
     manufacturer: Arista
@@ -410,8 +416,6 @@ DEVICE_ROLES = {
     },
 }
 
-prefix_ct = ContentType.objects.get_for_model(Prefix)
-vlan_ct = ContentType.objects.get_for_model(VLAN)
 
 def create_prefix_roles(logger):
     """Create all Prefix Roles defined in PREFIX_ROLES and add content types for IPAM Prefix and VLAN."""

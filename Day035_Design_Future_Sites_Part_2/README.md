@@ -19,7 +19,7 @@ $ invoke db-import
 $ invoke debug
 ```
 
-## Design Future Sites Part 1 code
+## Design Future Sites Part 2 Code
 
 If you had to create a new codespace instance make sure you recreate the file from the previous challenge.
 
@@ -35,153 +35,40 @@ root@c9e0fa2a45a0:/opt/nautobot/jobs# chown nautobot:nautobot create_site_job.py
 Here is the Job code from where we left off yesterday.
 
 ```python
-"""Job to create a new site of type POP with optional parent site support."""
+"""Job to create a new site of type POP."""
+
 from django.contrib.contenttypes.models import ContentType
 
-from nautobot.apps.jobs import Job, register_jobs
-from nautobot.extras.models.roles import Role
-from nautobot.ipam.models import Prefix, VLAN
-
-name = "Data Population Jobs Collection"
-
-PREFIX_ROLES = ["p2p", "loopback", "server", "mgmt", "pop"]
-
-def create_prefix_roles(logger):
-    """Create all Prefix Roles defined in PREFIX_ROLES and add content types for IPAM Prefix and VLAN."""
-
-    # Retrieve the content type for Prefix and VLAN models.
-    prefix_ct = ContentType.objects.get_for_model(Prefix)
-    vlan_ct = ContentType.objects.get_for_model(VLAN)
-
-    for role in PREFIX_ROLES:
-        role_obj, created = Role.objects.get_or_create(name=role)
-        # Add the Prefix and VLAN content types to the role.
-        role_obj.content_types.add(prefix_ct, vlan_ct)
-        role_obj.validated_save()
-        logger.info(f"Successfully created role {role} with content types for Prefix and VLAN.")
-
-class CreatePop(Job):
-    """Job to create a new site of type POP."""
-
-    class Meta:
-        """Metadata for CreatePop."""
-
-        name = "Create a Point of Presence"
-        description = """
-        Create a new Site of Type POP.
-        A new /16 will automatically be allocated from the 'POP Global Pool' Prefix.
-        """
-
-    def run(self):
-        """Main function to create a site."""
-        # ----------------------------------------------------------------------------
-        # Initialize the database with all required objects.
-        # We will build on this in the coming days.
-        # ----------------------------------------------------------------------------
-        create_prefix_roles(self.logger)
-
-register_jobs(CreatePop)
-
-```
-
-Feel free to run this code as we add to it or wait until the end. We are using `get_or_create` method throughout so we will not get any errors if the object has already been created.
-
-Next we will add in the add Tenant portion
-
-```python
-"""Job to create a new site of type POP with optional parent site support."""
-from django.contrib.contenttypes.models import ContentType
 
 from nautobot.apps.jobs import Job, register_jobs
 from nautobot.extras.models.roles import Role
 from nautobot.ipam.models import Prefix, VLAN
 from nautobot.tenancy.models import Tenant
+from nautobot.extras.models import Status
+from nautobot.dcim.models.device_components import Interface
+from nautobot.extras.models.customfields import CustomField
 
 name = "Data Population Jobs Collection"
 
-PREFIX_ROLES = ["p2p", "loopback", "server", "mgmt", "pop"]
-TENANT_NAME = "Data Center"
-
-def create_prefix_roles(logger):
-    """Create all Prefix Roles defined in PREFIX_ROLES and add content types for IPAM Prefix and VLAN."""
-
-    # Retrieve the content type for Prefix and VLAN models.
-    prefix_ct = ContentType.objects.get_for_model(Prefix)
-    vlan_ct = ContentType.objects.get_for_model(VLAN)
-
-    for role in PREFIX_ROLES:
-        role_obj, created = Role.objects.get_or_create(name=role)
-        # Add the Prefix and VLAN content types to the role.
-        role_obj.content_types.add(prefix_ct, vlan_ct)
-        role_obj.validated_save()
-        logger.info(f"Successfully created role {role} with content types for Prefix and VLAN.")
-
-def create_tenant(logger):
-    """Create a tenant with the name defined in TENANT_NAME."""
-    tenant_obj, _ = Tenant.objects.get_or_create(name=TENANT_NAME)
-    tenant_obj.validated_save()
-    logger.info(f"Successfully created Tenant {TENANT_NAME}.")
-
-class CreatePop(Job):
-    """Job to create a new site of type POP."""
-
-    class Meta:
-        """Metadata for CreatePop."""
-
-        name = "Create a Point of Presence"
-        description = """
-        Create a new Site of Type POP.
-        A new /16 will automatically be allocated from the 'POP Global Pool' Prefix.
-        """
-
-    def run(self):
-        """Main function to create a site."""
-        # ----------------------------------------------------------------------------
-        # Initialize the database with all required objects.
-        # We will build on this in the coming days.
-        # ----------------------------------------------------------------------------
-        create_prefix_roles(self.logger)
-        create_tenant(self.logger)
-
-register_jobs(CreatePop)
-```
-
-The create_tenant method is pretty simple and just takes the constant string of `Data Center` that is defined in TENANT_NAME and creates a tenant object with that name. We will be using the tenant object later in the coming days of the exercise.
-
-Next we will create the VLANs and assign the appropriate roles to each VLAN.
-
-```python
-"""Job to create a new site of type POP with optional parent site support."""
-from django.contrib.contenttypes.models import ContentType
-
-from nautobot.apps.jobs import Job, register_jobs
-from nautobot.extras.models.roles import Role
-from nautobot.ipam.models import Prefix, VLAN
-from nautobot.tenancy.models import Tenant
-
-name = "Data Population Jobs Collection"
 
 PREFIX_ROLES = ["p2p", "loopback", "server", "mgmt", "pop"]
+POP_PREFIX_SIZE = 16
 TENANT_NAME = "Data Center"
 ACTIVE_STATUS = Status.objects.get(name="Active")
-
 # VLAN definitions: key is also used to look up the role.
 VLAN_INFO = {
     "server": 1000,
     "mgmt": 99,
 }
-
 CUSTOM_FIELDS = {
     "role": {"models": [Interface], "label": "Role"},
 }
-DEVICE_TY
+# Retrieve the content type for Prefix and VLAN models.
+prefix_ct = ContentType.objects.get_for_model(Prefix)
+vlan_ct = ContentType.objects.get_for_model(VLAN)
 
 def create_prefix_roles(logger):
-    """Create all Prefix Roles defined in PREFIX_ROLES and add content types for IPAM Prefix and VLAN."""
-
-    # Retrieve the content type for Prefix and VLAN models.
-    prefix_ct = ContentType.objects.get_for_model(Prefix)
-    vlan_ct = ContentType.objects.get_for_model(VLAN)
+    """Create all Prefix Roles defined in PREFIX_ROLES and add content types for IPAM Prefix and VLAN."""    
 
     for role in PREFIX_ROLES:
         role_obj, created = Role.objects.get_or_create(name=role)
@@ -190,14 +77,17 @@ def create_prefix_roles(logger):
         role_obj.validated_save()
         logger.info(f"Successfully created role {role} with content types for Prefix and VLAN.")
 
+
 def create_tenant(logger):
     """Create a tenant with the name defined in TENANT_NAME."""
     tenant_obj, _ = Tenant.objects.get_or_create(name=TENANT_NAME)
     tenant_obj.validated_save()
     logger.info(f"Successfully created Tenant {TENANT_NAME}.")
 
+
 def create_vlans(logger):
     """Create predefined VLANs defined in VLAN_INFO, and assign the appropriate role."""
+    # Get the active status from the database.
 
     for vlan_name, vlan_id in VLAN_INFO.items():
         # Retrieve the appropriate role based on the VLAN name.
@@ -261,15 +151,31 @@ class CreatePop(Job):
         create_vlans(self.logger)
         create_custom_fields(self.logger)
 
+
 register_jobs(CreatePop)
 
 ```
 
-As we stated yesterday we will be working on DeviceTypes today. Here is the data we will be using, which will be defined as the constant DEVICE_TYPES_YAML.
+## Walkthrough
 
-The yaml content for these device types was retrieved from the community [Nautobot Device Type library](https://github.com/nautobot/devicetype-library). There are many device types there and you should check it out to see all of the ones that are available.
+We will start our modification to the existing code by adding the necessary import statements.
 
 ```python
+
+from itertools import product
+import re
+import yaml
+from nautobot.dcim.models import DeviceType, Manufacturer
+from nautobot.dcim.models.device_component_templates import InterfaceTemplate
+
+```
+
+As we stated yesterday, today will be all about DeviceTypes. Here is the data we will be using, which will be defined as the constant DEVICE_TYPES_YAML.
+
+The YAML content for these device types was retrieved from the community [Nautobot Device Type library](https://github.com/nautobot/devicetype-library). There are many device types there and you should check it out to see all of the ones that are available.
+
+```python
+
 DEVICE_TYPES_YAML = [
     # First device type
     """
@@ -322,14 +228,16 @@ DEVICE_TYPES_YAML = [
         # 10gbase-x-sfpp ports can be broken into [1-24]
     """,
 ]
+
 ```
 
 > [!NOTE]
 We are adding interfaces to the device types which uses the InterfaceTemplate model from device_component_templates and we needed a helper function called `expand_interface_pattern` to use the short interface naming convention of `- pattern: "Ethernet[1-60]/[1-4]"`
 
-The method is below. We are using regex here to match the interface patterns so we can match a pattern and generate a large number of interfaces without having to specify each one in the device type yaml.
+The method below shows how we are using regex here to match the interface patterns so we can match a pattern and generate a large number of interfaces without having to specify each one in the device type yaml.
 
 ```python
+
 def expand_interface_pattern(pattern):
     """
     Expands an interface pattern like 'Ethernet[1-60]/[1-4]' into actual names.
@@ -356,9 +264,10 @@ def expand_interface_pattern(pattern):
 
 ```
 
-The other new method that we added is create_device_types.
+The other new method we added is ```create_device_types```, which also calls on the ```expand_interface_pattern``` method.
 
 ```python
+
 def create_device_types(logger):
     """
     Create DeviceType objects from YAML definitions and add interfaces using InterfaceTemplate.
@@ -421,7 +330,7 @@ def create_device_types(logger):
 
 This method is responsible for creating the device type and then adds interfaces using the Nautobot InterfaceTemplate class so that any device created from the device types will be created with the interfaces we specify for the device type.
 
-The first part of the method reads the yaml data that we specified in DEVICE_TYPES_YAML. We then check to see if the Manufacturer is already present in Nautobot and if not we create it. Manufacturer is a required field for a Device Type and it must be present in the database before the Device Type can be created.
+The first part of the method reads the yaml data that we specified in DEVICE_TYPES_YAML. We then check to see if the Manufacturer is already present in Nautobot, and if not, we create it. Manufacturer is a required field for a Device Type and it must be present in the database before the Device Type can be created.
 
 ```python
 
@@ -433,11 +342,13 @@ The first part of the method reads the yaml data that we specified in DEVICE_TYP
             logger.error("Manufacturer not provided in YAML definition.")
             continue
         manufacturer_obj, _ = Manufacturer.objects.get_or_create(name=manufacturer_name)
+
 ```
 
-Next store all of the data from the yaml file in either defaults except for the manufacturer and model before we try to create the new device type. If the device type already exists we skip in and move on.
+Next, we store all of the data from the yaml file in either defaults except for the manufacturer and model before we try to create the new device type. If the device type already exists we skip in and move on.
 
 ```python
+
         model_name = data.pop("model", None)
         if not model_name:
             logger.error("Model not provided in YAML for manufacturer %s", manufacturer_name)
@@ -460,7 +371,7 @@ Next store all of the data from the yaml file in either defaults except for the 
             logger.info(f"DeviceType already exists: {device_type_obj}")
 ```
 
-Finally we create the interfaces either directly or if we are using a pattern as described above we use the `expand_interface_pattern` method.
+Finally, we create the interfaces either directly or if we are using a pattern as described above we use the `expand_interface_pattern` method.
 
 ```python
         for iface in data.get("interfaces", []):
@@ -487,18 +398,16 @@ Finally we create the interfaces either directly or if we are using a pattern as
                     logger.info(f"Added interface {iface_name} ({iface_type}) to {model_name}")
 ```
 
-The finished product for the first two days is below. We are not ready to being building the Site portion of the exercise.
+Below is the finished product for the first two days. We are not ready the Site portion of the exercise.
 
 ## Final Code
 
 ```python
-"""Job to create a new site of type POP with optional parent site support."""
 
-from itertools import product
-import re
+
+"""Job to create a new site of type POP."""
 
 from django.contrib.contenttypes.models import ContentType
-import yaml
 
 from nautobot.apps.jobs import Job, register_jobs
 from nautobot.dcim.models import DeviceType, Manufacturer
@@ -507,6 +416,15 @@ from nautobot.extras.models import Status
 from nautobot.extras.models.roles import Role
 from nautobot.ipam.models import Prefix, VLAN
 from nautobot.tenancy.models import Tenant
+from nautobot.dcim.models.device_components import Interface
+from nautobot.extras.models.customfields import CustomField
+
+####DAY35####
+from itertools import product
+import re
+import yaml
+from nautobot.dcim.models import DeviceType, Manufacturer
+from nautobot.dcim.models.device_component_templates import InterfaceTemplate
 
 name = "Data Population Jobs Collection"
 
@@ -523,6 +441,11 @@ VLAN_INFO = {
 CUSTOM_FIELDS = {
     "role": {"models": [Interface], "label": "Role"},
 }
+# Retrieve the content type for Prefix and VLAN models.
+prefix_ct = ContentType.objects.get_for_model(Prefix)
+vlan_ct = ContentType.objects.get_for_model(VLAN)
+
+####DAY35####
 DEVICE_TYPES_YAML = [
     """
     manufacturer: Arista
@@ -556,11 +479,7 @@ DEVICE_TYPES_YAML = [
 
 
 def create_prefix_roles(logger):
-    """Create all Prefix Roles defined in PREFIX_ROLES and add content types for IPAM Prefix and VLAN."""
-
-    # Retrieve the content type for Prefix and VLAN models.
-    prefix_ct = ContentType.objects.get_for_model(Prefix)
-    vlan_ct = ContentType.objects.get_for_model(VLAN)
+    """Create all Prefix Roles defined in PREFIX_ROLES and add content types for IPAM Prefix and VLAN."""    
 
     for role in PREFIX_ROLES:
         role_obj, created = Role.objects.get_or_create(name=role)
@@ -620,6 +539,7 @@ def create_custom_fields(logger):
             cf.validated_save()
             logger.info(f"Added content type {ct} to custom field '{cf_name}'")
 
+####DAY35####
 def create_device_types(logger):
     """
     Create DeviceType objects from YAML definitions and add interfaces using InterfaceTemplate.
@@ -679,7 +599,6 @@ def create_device_types(logger):
                 if created:
                     logger.info(f"Added interface {iface_name} ({iface_type}) to {model_name}")
 
-
 def expand_interface_pattern(pattern):
     """
     Expands an interface pattern like 'Ethernet[1-60]/[1-4]' into actual names.
@@ -704,7 +623,6 @@ def expand_interface_pattern(pattern):
     # Expand using cartesian product
     return [base_name.format(*nums) for nums in product(*ranges)]
 
-
 class CreatePop(Job):
     """Job to create a new site of type POP."""
 
@@ -727,10 +645,12 @@ class CreatePop(Job):
         create_tenant(self.logger)
         create_vlans(self.logger)
         create_custom_fields(self.logger)
+        ####DAY35####
         create_device_types(self.logger)
 
 
 register_jobs(CreatePop)
+
 
 ```
 
@@ -745,3 +665,5 @@ In tomorrow's challenge, we will enhance our Site creation Job by adding Site an
 [LinkedIn](https://www.linkedin.com/)
 
 [X/Twitter](https://x.com/home)
+
+
