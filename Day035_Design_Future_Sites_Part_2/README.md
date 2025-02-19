@@ -1,23 +1,6 @@
 # Design Future Sites (Part 2)
 
-- Use Job to populate future site
-
-## Environment Setup
-
-The environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md), below is a summary of the steps, please consult the guide for a detailed background if needed.
-
-> [!TIP]
-> If you have stopped the Codespace environment and restart again but found the Docker daemon stopped working, please follow the steps in the setup guide to rebuild the environment.
-
-We will follow the same steps to start Nautobot:
-
-```
-$ cd nautobot-docker-compose/
-$ poetry shell
-$ invoke build
-$ invoke db-import
-$ invoke debug
-```
+Today marks the second day of the 6-day series of a job that will help us design a future site. 
 
 ## Design Future Sites Part 2 Code
 
@@ -654,16 +637,22 @@ register_jobs(CreatePop)
 
 ```
 
+Here is the Job output from the newly updated code: 
+
+![day_35_job_result](images/day_35_job_result.png)
+
+
 ## Day 35 To Do
 
 Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/).
 
-Go ahead and post a screenshot of the successful execution of the new job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode` so we can share your progress!
+Go ahead and post a screenshot of the successful execution of the job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode`, so we can share your progress!
 
 In tomorrow's challenge, we will enhance our Site creation Job by adding Site and Prefix creation. See you tomorrow!
 
-[LinkedIn](https://www.linkedin.com/)
+[X/Twitter](<https://twitter.com/intent/tweet?url=https://github.com/networktocode/100-days-of-nautobot-challenge&text=I+jst+completed+Day+35+of+the+100+days+of+nautobot+challenge+!&hashtags=100DaysOfNautobot,JobsToBeDone>)
 
-[X/Twitter](https://x.com/home)
+[LinkedIn](https://www.linkedin.com/) (Copy & Paste: I just completed Day 35 of 100 Days of Nautobot, https://github.com/networktocode/100-days-of-nautobot-challenge, challenge! @networktocode #JobsToBeDone #100DaysOfNautobot)
+
 
 
