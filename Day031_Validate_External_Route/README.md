@@ -27,7 +27,7 @@ $ invoke debug
 We will also need our cEOS virtual lab for today's challenge. Below are the quick steps to deploy our topology but feel free to checkout [Day 9](../Day009_Python_Script_to_Jobs_Part_1/README.md) of the challenge if you need help with the virtual lab setup.
 
 > [!TIP]
-> This step is optional! So far we've been launching our Containerlab topology with just the Boston devices. If you want to test your job with more devices, try enabling the New York devices in the ceos-lab.clab.yml file. Just remember to add the IP addresses to the devices and assign the Primary IPs! If you need help with this, revisit [Day 10](../Day010_Python_Script_to_jobs_Part_2/README.md).
+> This step is optional! So far we've been launching our Containerlab topology with just the Boston devices. If you want to test your job with more devices, try enabling the New York devices in the `ceos-lab.clab.yml` file. Just remember to add the IP addresses to the devices and assign the Primary IPs! If you need help with this, revisit [Day 10](../Day010_Python_Script_to_jobs_Part_2/README.md). Also remember to use a larger Codespace instance for more hardware resources. 
 
 ```yml
 ---
@@ -35,8 +35,6 @@ name: "ceos-lab"
 prefix: ""
 
 mgmt:
-  # network: "network-lab"
-  # ipv4-subnet: "172.24.78.0/24"
   network: "bridge"
 
 topology:
@@ -75,7 +73,7 @@ Proceed here if you just want to work with Boston devices.
 
 ➜ ~ $ docker import cEOS64-lab-4.32.0F.tar ceos:4.32.0F
 ➜ ~ $ cd 100-days-of-nautobot/clab/
-➜ ~/100-days-of-nautobot/clab (main) $ sudo containerlab deploy --topo ceos-lab.clab.yml
+➜ ~/100-days-of-nautobot/clab (main) $ sudo containerlab deploy --topo ceos-lab.clab.yml --node-filter bos-acc-01,bos-rtr-01
 
 ```
 
@@ -159,7 +157,7 @@ As we have learned so far, Nautobot relies on the ```run()``` method to execute 
 
 If you're familiar with the ```request``` library, you know that we need a few basic elements to pass as part of the http(s) request when making an API call.  For the request to work, we'll need a few things:
 
-1. API enpoint represented by ```url```.
+1. API endpoint represented by ```url```.
 2. The ```payload```, which contains the actual command. The data is structured based on the device requirements.
 3. A valid ```auth``` or authorization credentials that allow us to remotely execute commands on a device. 
 
@@ -224,7 +222,7 @@ Finally, let's add some connection error handling to make sure we know if the de
 
             return route_data  # You can modify this to return specific data if neededhe outcome of the API call.
 
-        # Generate error mesages as both return value and log entry
+        # Generate error messages as both return value and log entry
         except requests.exceptions.RequestException as e:
             self.logger.fatal(f"Error connecting to {device.name}. Device unreachable.")
             raise Exception(f"Error connecting to {device.name}: {e}")
@@ -236,7 +234,7 @@ register_jobs(
 
 ```
 
-## Sample Code
+## Complete Code
 
 At this point, our code should be similar to this::
 
@@ -340,6 +338,13 @@ We are now ready to run the job! 🚀
 And here is the result!
 
 ![Remote Route Job Result With All Routes](images/remote_route_3.png)
+
+> [!TIP]
+> If you have problem connecting to the device, consult [Day 9](../Day009_Python_Script_to_Jobs_Part_1/README.md) and [Day 10](../Day010_Python_Script_to_Jobs_Part_2/README.md) steps, including: 
+> 1. IP Prefix for the BOS devices. 
+> 2. IP addresses for the devices exist and assigned to the devices. 
+> 3. The device's primary IP is assigned. 
+> 4. Arista EOS network driver mapping is specified under Devices -> Platforms -> Arista EOS -> (Edit Platform) -> Network Drivers is specified with `arista_eos`. 
 
 Awesome! So far, we've successfully connected to the remote device, sent an API call with the correct payload, and retrieve the data from it's routing table.
 
