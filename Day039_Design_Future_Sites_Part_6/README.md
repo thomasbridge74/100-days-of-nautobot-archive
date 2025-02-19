@@ -283,28 +283,33 @@ import yaml
 from nautobot.dcim.models.device_component_templates import InterfaceTemplate
 from nautobot.extras.models import Status
 from nautobot.extras.models.roles import Role
+from nautobot.ipam.models import Prefix, VLAN
 from nautobot.tenancy.models import Tenant
+from nautobot.extras.models.customfields import CustomField
+from nautobot.dcim.models.device_components import Interface
 
 ####DAY36####
-from nautobot.apps.jobs import Job, ObjectVar, register_jobs, StringVar, IntegerVar
+from nautobot.apps.jobs import Job, ObjectVar, StringVar, register_jobs
 from nautobot.dcim.models.locations import Location, LocationType
 from ipaddress import IPv4Network
-
-####DAY37####
+from nautobot.extras.models.relationships import Relationship, RelationshipAssociation
 from nautobot.extras.choices import RelationshipTypeChoices
 
-####DAY38#####
+####DAY37####
 from nautobot.dcim.models.racks import Rack
-from nautobot.dcim.models.devices import Device, DeviceType, Platform, Manufacturer
+from nautobot.dcim.choices import RackTypeChoices
+
+####DAY38####
 from nautobot.dcim.models.device_components import Interface
 from nautobot.dcim.choices import RackTypeChoices, InterfaceTypeChoices
 from nautobot.ipam.models import Prefix, VLAN, IPAddress
-from nautobot.extras.models.customfields import CustomField
-from nautobot.extras.models.relationships import Relationship, RelationshipAssociation
+from nautobot.dcim.models.devices import Device, DeviceType, Platform, Manufacturer
+
 
 ####DAY39####
 from nautobot.dcim.models import Cable
 from nautobot.circuits.models import Circuit, CircuitTermination, CircuitType, Provider
+
 
 name = "Data Population Jobs Collection"
 
@@ -320,6 +325,12 @@ VLAN_INFO = {
 CUSTOM_FIELDS = {
     "role": {"models": [Interface], "label": "Role"},
 }
+
+# Retrieve the content type for Prefix and VLAN models.
+prefix_ct = ContentType.objects.get_for_model(Prefix)
+vlan_ct = ContentType.objects.get_for_model(VLAN)
+
+####DAY35####
 DEVICE_TYPES_YAML = [
     """
     manufacturer: Arista
@@ -353,9 +364,9 @@ DEVICE_TYPES_YAML = [
 
 ####DAY36####
 POP_PREFIX_SIZE = 16
+
 ####DAY37####
 ROLE_PREFIX_SIZE = 18
-####DAY38####
 RACK_HEIGHT = 48
 RACK_WIDTH = 19
 RACK_TYPE = RackTypeChoices.TYPE_4POST
@@ -385,10 +396,8 @@ DEVICE_ROLES = {
     },
 }
 
-prefix_ct = ContentType.objects.get_for_model(Prefix)
-vlan_ct = ContentType.objects.get_for_model(VLAN)
 
-####DAY36####
+####DAY39####
 TRANSIT_PROVIDERS = ["Equinix", "Cologix", "CoreSite"]
 
 def create_prefix_roles(logger):
