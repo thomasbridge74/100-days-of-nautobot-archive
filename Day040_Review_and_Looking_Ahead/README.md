@@ -17,7 +17,8 @@ It is hard to believe how far we have come. Let's review:
 - We learned about Job Button, Job Hooks, Job API, Scheduling, and Approvals in the following days 12 - 17. 
 - We learned about using Git as data source for Jobs code. 
 - We learned about how to process upload files in Days 21 - 22. 
-- Job templates, testing, troubleshooting, Ansible integration were introduced in Days 23 - 29. 
+- Job templates, testing, secrets, troubleshooting, Ansible integration were introduced in Days 23 - 33.
+- We took on a monster job creation for the next 6 days in creating a job to design future sites.  
 
 If any of these concepts were unclear, now is a great time to go back and review. 
 
@@ -44,8 +45,6 @@ Looking ahead, Apps enable network developers to create more impactful and compr
 I can't wait to get started! What about you? 
 
 ## Day 40 To Do
-
-Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/). 
 
 Go ahead and post what you are most excited about making a transition from Jobs to Apps on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode`, so we can share your progress! 
 
