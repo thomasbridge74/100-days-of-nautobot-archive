@@ -1,24 +1,6 @@
 # Design Future Sites (Part 5)
 
-- Use Job to populate future site
-
-
-## Environment Setup
-
-The environment setup will be the same as [Lab Setup Scenario 1](../Lab_Setup/scenario_1_setup/README.md), below is a summary of the steps, please consult the guide for a detailed background if needed.
-
-> [!TIP]
-> If you have stopped the Codespace environment and restart again but found the Docker daemon stopped working, please follow the steps in the setup guide to rebuild the environment.
-
-We will follow the same steps to start Nautobot:
-
-```shell
-cd nautobot-docker-compose/
-poetry shell
-invoke build
-invoke db-import
-invoke debug
-```
+Alright, Part 5 here we go! 
 
 ## Let's continue from where we left off on Day 37
 
@@ -1039,11 +1021,10 @@ Seeing all these green check marks gives us the awesome sense of accomplishment!
 
 Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/).
 
-Go ahead and post a screenshot of the successful execution of the new job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode` so we can share your progress!
+Go ahead and post a screenshot of the successful execution of the new job on a social media of your choice, make sure you use the tag `#100DaysOfNautobot` `#JobsToBeDone` and tag `@networktocode`, so we can share your progress!
 
 Final day of building a site in Nautobot for Day 39! See you tomorrow!
 
-[LinkedIn](https://www.linkedin.com/)
+[X/Twitter](<https://twitter.com/intent/tweet?url=https://github.com/networktocode/100-days-of-nautobot-challenge&text=I+jst+completed+Day+38+of+the+100+days+of+nautobot+challenge+!&hashtags=100DaysOfNautobot,JobsToBeDone>)
 
-[X/Twitter](https://x.com/home)
-
+[LinkedIn](https://www.linkedin.com/) (Copy & Paste: I just completed Day 38 of 100 Days of Nautobot, https://github.com/networktocode/100-days-of-nautobot-challenge, challenge! @networktocode #JobsToBeDone #100DaysOfNautobot)
