@@ -1069,7 +1069,28 @@ register_jobs(CreatePop)
 
 ```
 
-🎉 It's time to update our checklist and celebrate! Congratulations on completing this long exercise 🎉 
+🚀Now, for the moment we've all been waiting for...Let's launch our job and see the results!🚀
+
+First, let's check our Circuits by navigating to "CIRCUITS->Circuits" and we should see this:
+
+![Circuits](images/create_site_day39_1.png)
+
+These circuits are based on the Providers that we created.
+
+![Circuits](images/create_site_day39_2.png)
+
+We also want to verify that the circuits were assigned as "Transit". We can do so by navigating to "CIRCUITS->Circuit Types->Transit".
+
+![Transit Cicuits](images/create_site_day39_3.png)
+
+And FINALLY...the last element is cabling! Here, we want to make sure that our ```edge``` devices have connections to the ```Circuits``` and ```leaf``` devices.
+
+![Cabling](images/create_site_day39_4.png)
+
+
+It's time to update our checklist and celebrate! 
+
+🎉 🎉 Congratulations on completing this long exercise 🎉 🎉 
 
 ✅ Day 36:
 
