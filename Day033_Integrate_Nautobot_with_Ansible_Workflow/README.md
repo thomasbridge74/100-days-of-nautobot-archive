@@ -30,11 +30,8 @@ For this lab we only needed the `bos-acc-01` devices:
 $ cd ~/100-days-of-nautobot/clab/
 $ sudo containerlab deploy --topo ceos-lab.clab.yml --node-filter bos-acc-01
 ```
-
-The environment is now set up for today’s challenge.  
-
 ## Nautobot as an Ansible Dynamic Inventory
-
+The environment is now set up for today’s challenge.  
 For today’s challenge, we will use Nautobot as a dynamic inventory and create a couple of playbooks to modify the configuration on `bos-acc-01`.
 
 First, let’s set up the inventory file to use Nautobot’s inventory module. 
@@ -47,11 +44,13 @@ Let’s use one of the provided examples to test this. We can include the API to
 1. Create an environment variable called `NAUTOBOT_TOKEN`.
 2. Use Ansible Vault to store the token in an encrypted file.
 
-We’ll use the environment variable approach. You can find the API token created with the containers in `nautobot-docker-compose/environments/creds.env` on line 11 (`NAUTOBOT_SUPERUSER_API_TOKEN`). Add this token to your environment variables by editing either your `.bashrc` or `.zshrc` file, located in your VS Code Explorer on the left side.
+We’ll use the environment variable approach. You can find the API token from the Nautobot App under ADMIN --> Profile --> API Tokens
+![API_TOKEN](images/API_Token.png)
+
 
 At the bottom of the file, add the following:
 ```
-export NAUTOBOT_TOKEN="<YOUR TOKEN FROM THE CREDS.ENV FILE GOES HERE>"
+export NAUTOBOT_TOKEN="<YOUR TOKEN FROM THE ADMIN Profile GOES HERE>"
 ```
 
 ### BASH Instructions
@@ -469,12 +468,12 @@ ceos-01#
 
 This task uses the config_context for SNMP settings and the Arista EOS Ansible module to apply the configuration to the router and switch in Boston. To run the playbook, use: 
 ```bash
-ansible-playbook pb.snmp_update.yml -u admin -k
+ansible-playbook pb.snmp_update.yml -i inventory.yml -u admin -k
 ``` 
 
 You should see output in the terminal similar to this after running the playbook:
 ```bash
-$ ansible-playbook pb.snmp_update.yml -u admin -k
+$ ansible-playbook pb.snmp_update.yml -i inventory.yml -u admin -k
 [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path instead. This feature will be removed from 
 ansible-core in version 2.19. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
 SSH password: 
