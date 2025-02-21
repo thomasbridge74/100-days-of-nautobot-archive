@@ -163,6 +163,28 @@ git clone https://github.com/nautobot/100-days-of-nautobot.git
 cp 100-days-of-nautobot/README.md .
 ```
 
+## Connecting to Devices
+
+In [Day 9](../../Day009_Python_Script_to_Jobs_Part_1/README.md) and [Day 10](../../Day010_Python_Script_to_Jobs_Part_2/README.md) we allow the Job worker connect to the `Arista EOS` devices in Containerlab. There are a few moving parts behind the scenes to make the initial experience smooth. If you have problem connect to the devices, check the following: 
+
+- The IP Prefix for the network devices exist, add the prefix if needed. 
+
+![ip_prefix](images/ip_prefix.png)
+
+- The IP addresses used for the devices exist within the prefix, add them if needed. 
+
+![ip_addresses](images/ip_addresses.png)
+
+- The device interface has the correct IP address assigned to it, for example, `bos-acc-01`'s `Management1` interface should have `172.16.0.2/16` assign to it in my lab: 
+
+![bos-acc-01-management1_1](images/bos-acc-01-management1_1.png)
+![bos-acc-01-management1_2](images/bos-acc-01-management1_2.png)
+
+- Last but not least, check to see if the network driver is specified for the platform. For example, Arista EOS driver should be specified as `arista_eos`: 
+
+![arista_eos_network_driver](images/arista_eos_network_driver.png)
+
+
 
 
 
