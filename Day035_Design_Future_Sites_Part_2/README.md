@@ -160,7 +160,6 @@ The YAML content for these device types was retrieved from the community [Nautob
 ```python
 
 DEVICE_TYPES_YAML = [
-    # First device type
     """
     manufacturer: Arista
     model: DCS-7280CR2-60
@@ -168,47 +167,26 @@ DEVICE_TYPES_YAML = [
     u_height: 1
     is_full_depth: false
     comments: '[Arista 7280R Data Sheet](https://www.arista.com/assets/data/pdf/Datasheets/7280R-DataSheet.pdf)'
-    console-ports:
-        - name: Console
-        type: rj-45
-    module-bays:
-        - name: PSU 1
-        position: '0'
-        - name: PSU 2
-        position: '1'
     interfaces:
-        - name: Management1
-        type: 1000base-t
-        mgmt_only: true
-        - name: Ethernet1/1
-        type: 100gbase-x-qsfp28
-        - name: Ethernet2/1
-        type: 100gbase-x-qsfp28
-        # QSFP28(100G) ports can be broken into 4x25 with a model of [1-60]/[1-4]
+        - pattern: "Ethernet[1-60]/[1-4]"
+          type: 100gbase-x-qsfp28
+        - pattern: "Management1"
+          type: 1000base-t
+          mgmt_only: true
     """,
-    # Second device type with corrected indentation.
     """
     manufacturer: Arista
-    model: DCS-7150S-24-CL-F
-    part_number: DCS-7150S-24-CL-F
+    model: DCS-7150S-24
+    part_number: DCS-7150S-24
     u_height: 1
     is_full_depth: false
     comments: '[Arista 7150 Data Sheet](https://www.arista.com/assets/data/pdf/Datasheets/7150S_Datasheet.pdf)'
-    console-ports:
-        - name: Console
-        type: rj-45
-    module-bays:
-        - name: PS1
-        position: '0'
-        - name: PS2
-        position: '1'
     interfaces:
-        - name: Management1
-        type: 1000base-t
-        mgmt_only: true
-        - name: Ethernet1
-        type: 10gbase-x-sfpp
-        # 10gbase-x-sfpp ports can be broken into [1-24]
+        - pattern: "Ethernet[1-24]"
+          type: 10gbase-x-sfpp
+        - pattern: "Management1"
+          type: 1000base-t
+          mgmt_only: true
     """,
 ]
 
