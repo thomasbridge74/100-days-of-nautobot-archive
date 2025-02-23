@@ -145,7 +145,7 @@ We can attach to the Nautobot docker image from the terminal window with ```dock
 Let's attach to the nautobot container as root, navigate to the ```/opt/nautobot/jobs``` folder, then create a ```hello_jobs.py``` file:  
 
 ```
-@ericchou1 ➜ ~ $ docker exec -it nautobot_docker_compose-nautobot-1 bash
+@ericchou1 ➜ ~ $ docker exec -it -u root nautobot_docker_compose-nautobot-1 bash
 
 root@196e7f7abedd:/opt/nautobot# cd jobs
 root@196e7f7abedd:/opt/nautobot/jobs# touch hello_jobs.py
