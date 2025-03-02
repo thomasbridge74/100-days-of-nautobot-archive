@@ -45,9 +45,12 @@ Find the execute button and see the results:
 
 ## Your Turn
 
-Now it is your turn, try out any of the API endpoint with either `curl` or `requests`: 
+Now it is your turn, try out any of the API endpoint with either `curl` or `requests`.
 
-```
+You can find instructions on how to acquire a token and connect to the REST API in the [Nautobot User Guide - REST API](https://docs.nautobot.com/projects/core/en/stable/user-guide/platform-functionality/rest-api/authentication/#rest-api-authentication) documentation.
+
+### curl
+```sh
 $ curl --help
 Usage: curl [options...] <url>
  -d, --data <data>          HTTP POST data
@@ -66,14 +69,17 @@ Usage: curl [options...] <url>
 This is not the full help, this menu is stripped into categories.
 Use "--help category" to get an overview of all categories.
 For all options use the manual or "--help all".
+```
 
-$ python -m requests
-/home/vscode/.cache/pypoetry/virtualenvs/nautobot-docker-compose-70lkLMMl-py3.10/bin/python: No module named requests.__main__; 'requests' is a package and cannot be directly executed
+### python requests
+```sh
 (nautobot-docker-compose-py3.10) @ericchou1 ➜ ~/nautobot-docker-compose (main) $ python
 Python 3.10.12 (main, Sep 11 2024, 15:47:36) [GCC 11.4.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import requests
->>> exit()
+>>> tokens = requests.get("http://localhost:8080/api/users/tokens", auth=("admin", "admin")).json()["results"]
+>>> headers = { "Authorization": f"Token {tokens[0]["key"]}", "Accept": "application/json" }
+>>> requests.get("http://localhost:8080/api/extras/job-results/?depth=1", headers=headers).json()
 ```
 
 For users familiar with [pynautobot](https://github.com/nautobot/pynautobot), you can also use the [API endpoint class](https://github.com/nautobot/pynautobot?tab=readme-ov-file#jobs). 
