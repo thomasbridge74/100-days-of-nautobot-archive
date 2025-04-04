@@ -29,9 +29,34 @@ topology:
       kind: "ceos"
       startup-config: "startup-configs/nyc-rtr-01.conf"
 
+    bos-dummy:
+      kind: bridge
+  
+    nyc-dummy:
+      kind: bridge
+
   links:
     - endpoints: ["bos-acc-01:eth1", "bos-rtr-01:eth1"]
     - endpoints: ["bos-acc-01:eth2", "nyc-rtr-01:eth2"]
     - endpoints: ["bos-rtr-01:eth2", "nyc-acc-01:eth2"]
     - endpoints: ["nyc-acc-01:eth1", "nyc-rtr-01:eth1"]
-
+    - endpoints: ["bos-acc-01:eth2", "bos-dummy:acc-eth2"]
+    - endpoints: ["bos-acc-01:eth3", "bos-dummy:acc-eth3"]
+    - endpoints: ["bos-acc-01:eth4", "bos-dummy:acc-eth4"]
+    - endpoints: ["bos-acc-01:eth5", "bos-dummy:acc-eth5"]
+    - endpoints: ["bos-acc-01:eth6", "bos-dummy:acc-eth6"]
+    - endpoints: ["bos-rtr-01:eth2", "bos-dummy:rtr-eth2"]
+    - endpoints: ["bos-rtr-01:eth3", "bos-dummy:rtr-eth3"]
+    - endpoints: ["bos-rtr-01:eth4", "bos-dummy:rtr-eth4"]
+    - endpoints: ["bos-rtr-01:eth5", "bos-dummy:rtr-eth5"]
+    - endpoints: ["bos-rtr-01:eth6", "bos-dummy:rtr-eth6"]
+    - endpoints: ["nyc-acc-01:eth2", "nyc-dummy:acc-eth2"]
+    - endpoints: ["nyc-acc-01:eth3", "nyc-dummy:acc-eth3"]
+    - endpoints: ["nyc-acc-01:eth4", "nyc-dummy:acc-eth4"]
+    - endpoints: ["nyc-acc-01:eth5", "nyc-dummy:acc-eth5"]
+    - endpoints: ["nyc-acc-01:eth6", "nyc-dummy:acc-eth6"]
+    - endpoints: ["nyc-rtr-01:eth2", "nyc-dummy:rtr-eth2"]
+    - endpoints: ["nyc-rtr-01:eth3", "nyc-dummy:rtr-eth3"]
+    - endpoints: ["nyc-rtr-01:eth4", "nyc-dummy:rtr-eth4"]
+    - endpoints: ["nyc-rtr-01:eth5", "nyc-dummy:rtr-eth5"]
+    - endpoints: ["nyc-rtr-01:eth6", "nyc-dummy:rtr-eth6"]
