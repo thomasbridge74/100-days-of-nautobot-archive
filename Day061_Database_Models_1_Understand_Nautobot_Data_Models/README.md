@@ -1,4 +1,4 @@
-# Nautobot Database Model Part 1: Understanding Nautobot's Core Data Model
+# Nautobot Database Model Part 1: Understanding Nautobot's Core Data Models
 
 In the next few days, we will familiarize ourselves with some of Nautobot's Data models. As stated in the [Core Data Model Overview](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/), there are nearly 200 models in Nautobot core, which do not include any of the models that come from Nautobot Apps. We cannot possibly go over all the models in a single day's challenge. But instead, we can highlight the most common models, learn about their usage pattern, learn where to find documentation, and use them as a quick reference for other models.  
 

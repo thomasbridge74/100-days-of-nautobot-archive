@@ -8,21 +8,47 @@ Security in Nautobot involves protecting data from unauthorized access, ensuring
 
 ## Environment Setup
 
-We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
+For today's challenge, we will use:
+
+- [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab for hands-on practice.
+- [https://demo.nautobot.com/](https://demo.nautobot.com/) for a live demo environment.
+- [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) as a reference guide.
+
 
 ## Data Integrity 
 
-We have already seen many of the concepts applied in the data model creation, let's review them: 
+Data integrity ensures that the information in your database remains accurate, consistent, and reliable. Here are the key concepts and practices that Nautobot uses to maintain integrity:
 
-**Field Constraints**: Define constraints on individual fields to ensure they store valid data. Examples include setting *max_length* for *CharField*, *unique=True* for fields that must have unique values, and *null=True* for fields that can be empty.
+### 1. **Field Constraints**
+Field constraints enforce rules at the individual field level to ensure valid data. Examples include:
+- `max_length` for specifying the maximum number of characters in a `CharField`.
+- `unique=True` for fields that must have unique values (e.g., serial numbers).
+- `null=True` for fields that can be left empty.
 
-**Model Validation**: Implement custom validation methods within your models to enforce complex validation rules that can't be captured by field constraints alone.
+---
 
-**Database Relationships**: Use relationships such as *ForeignKey*, *OneToOneField*, and *ManyToManyField* to maintain referential integrity between models. The *on_delete* parameter in *ForeignKey* ensures that related data is handled appropriately when a referenced object is deleted.
+### 2. **Model Validation**
+Custom validation methods within models allow you to enforce complex validation rules that go beyond basic field constraints. These methods help ensure that your data adheres to business logic and organizational requirements.
 
-Looking back at [Day 62](../Day062_Database_Models_2_Custom_Models/README.md) custom models, we created the following code related to the data integrity concepts: 
+---
 
-```
+### 3. **Database Relationships**
+Database relationships maintain referential integrity between models. Examples include:
+- **`ForeignKey`**: Links one record to another in a different model (e.g., associating an `Asset` with a `Device`).
+- **`OneToOneField`**: Ensures a unique, one-to-one relationship between records.
+- **`ManyToManyField`**: Links multiple records from one model to multiple records in another.
+
+The `on_delete` parameter in `ForeignKey` ensures that related data is handled appropriately when a referenced object is deleted. For example:
+- `on_delete=models.CASCADE`: Deletes the related object and all associated records.
+- `on_delete=models.SET_NULL`: Sets the related field to `NULL` if the referenced object is deleted.
+
+---
+
+
+### Example: Asset Model with Integrity Features
+Here is a practical example of these concepts in action Looking back at [Day 62](../Day062_Database_Models_2_Custom_Models/README.md) custom models, we created the following code related to the data integrity concepts: 
+
+```python
 class Asset(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     serial_number = models.CharField(max_length=100, unique=True)
@@ -33,19 +59,48 @@ class Asset(models.Model):
         return f"Asset {self.serial_number} for {self.device}"
 ```
 
+The `Asset` model enforces:
+- Referencing a `Device` with a `ForeignKey` and `on_delete=models.CASCADE`.
+- Unique serial numbers for each asset.
+- Proper date fields for `purchase_date` and `warranty_expiration`.
+
+---
+
 ## Security 
 
-Security in Nautobot involves protecting data from unauthorized access. Key security practices include:
 
-- **Authentication and Authorization**: Use Django's built-in authentication system to manage user access. Define user roles and permissions to control who can view or modify data.
+Database security in Nautobot focuses on protecting data from unauthorized access and ensuring data confidentiality, integrity, and availability. Here are the key security measures:
 
-- **Field-Level Security**: Use Nautobot's [object permissions](https://docs.nautobot.com/projects/core/en/stable/user-guide/platform-functionality/users/objectpermission/) to restrict access to sensitive fields.
+### 1. **Authentication and Authorization**
+- Use Django's built-in authentication system to manage user access.
+- Define **user roles** and **permissions** to control who can view or modify data.
+- Leverage Nautobot's [object permissions](https://docs.nautobot.com/projects/core/en/stable/user-guide/platform-functionality/users/objectpermission/) to restrict access to sensitive fields.
 
-- **Audit Logging**: Enable audit logging to track changes made to data. This helps in monitoring and detecting unauthorized changes.
+---
 
-It is also worth pointing out that many of the security settings are set in `nautobot_config.py`, although we relaxed some of them in the development environment: 
+### 2. **Field-Level Security**
+Object-level permissions can be applied in Nautobot to limit access to specific fields or objects. This ensures that sensitive data is only accessible to authorized users.
 
+---
+
+### 3. **Audit Logging**
+Enable audit logging to track changes made to the database. This provides a clear record of who made changes, what changes were made, and when they occurred. Audit logs are essential for:
+- Monitoring unauthorized changes.
+- Complying with regulatory requirements.
+
+---
+
+### 4. **Secure Configuration**
+Many security settings are configured in the `nautobot_config.py` file. While development environments may relax some security settings, ensure production environments:
+- Use strong passwords and API keys.
+- Enforce HTTPS.
+- Define proper CORS and CSRF settings.
+- Restrict sensitive data visibility to authenticated users.
+
+Example of `nautobot_config.py` settings:
 ![nautobot_config_settings](images/nautobot_config_settings.png)
+
+---
 
 Congratulations on completing Day 63! 
 
