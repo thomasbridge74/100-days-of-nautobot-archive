@@ -8,6 +8,16 @@ Today, we will explore how filters are utilized within Nautobot and best practic
 
 We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
 
+```
+$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
+
 ### Understanding FilterSet Classes
 
 The following examples are taken from the existing code snippets in `example_app -> filters.py`. 

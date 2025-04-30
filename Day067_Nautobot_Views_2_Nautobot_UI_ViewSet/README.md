@@ -11,6 +11,16 @@ In today's challenge, we will introduce Nautobot's use of class-based views for 
 
 There is no hands-on work for today's challenge. Please feel free to use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab and [Nautbot Documentation](https://docs.nautobot.com/projects/core/en/stable/development/apps/) to experiment with code for today's challenge.
 
+```
+$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
+
 ### NautobotUIViewSetRouter
 
 Nautobot uses class-based views extensively through the `NautobotUIViewSet` and its component `Mixins`. 

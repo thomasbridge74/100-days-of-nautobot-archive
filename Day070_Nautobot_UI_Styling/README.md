@@ -21,6 +21,29 @@ Let's take a look at the files and play around with the different styles a bit.
 
 We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
 
+```
+$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
+
+nautobot_fundamental_models_uml
+In today's challenge, our objective is to use various tools to find relevant information about a particular core data model in Nautobot and its relationship with other data models.
+
+Environment Setup
+We will use a combination of Scenario 2 lab, https://demo.nautobot.com/, and Nautobot Documentation for today's challenge.
+
+ nautobot_fundamental_models_uml
+In today's challenge, our objective is to use various tools to find relevant information about a particular core data model in Nautobot and its relationship with other data models.
+
+Environment Setup
+We will use a combination of Scenario 2 lab, https://demo.nautobot.com/, and Nautobot Documentation for today's challenge.
+
+
 ## Theme Preview
 
 In our development environment we have `settings.DEBUG` set to `True`. As a result, we can navigate to `/theme-preview` to retrieve a template view that showcases many of the Nautobot UI elements. 

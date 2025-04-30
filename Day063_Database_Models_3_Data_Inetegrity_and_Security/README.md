@@ -14,6 +14,15 @@ For today's challenge, we will use:
 - [https://demo.nautobot.com/](https://demo.nautobot.com/) for a live demo environment.
 - [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) as a reference guide.
 
+```
+$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
 
 ## Data Integrity 
 

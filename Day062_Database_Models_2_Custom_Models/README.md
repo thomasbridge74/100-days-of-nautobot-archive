@@ -22,6 +22,15 @@ Let's see a few examples of custom data models. Keep in mind these models are fo
 
 We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
 
+```
+$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
 
 ## Database Relationships
 

@@ -8,6 +8,16 @@ In today's challenge, we will introduce some key concepts and best practices to 
 
 We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
 
+```
+$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
+
 ## Key Concepts
 
 1. **Indexing**: Indexes are used to speed up the retrieval of data from the database. Proper indexing can significantly improve query performance.

@@ -14,6 +14,15 @@ In today and tomorrow's challenges, we will try to gain an understanding of the 
 
 We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
 
+```$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
+
 ## Example App with UI Component Framework
 
 In the days between [Day 50](https://github.com/nautobot/100-days-of-nautobot/tree/main/Day050_Example_App_Overview) to [Day 59](https://github.com/nautobot/100-days-of-nautobot/tree/main/Day059_Example_App_Other_Considerations), we used the `Example App` in the nautobot repository to add useful links (model, view, URL, and navigation) to the app. Let's see how we can use the new UI Component to achieve the same goal. 
@@ -36,6 +45,8 @@ class UsefulLink(BaseModel):
 The next step would be to create the `views` for the model. This is where we can start to use Nautobot UI Component framework. We can add the following code to  `views.py` file under `example_app`: 
 
 ```python file=views.py
+from nautobot.apps.ui import ObjectDetailContent, SectionChoices, ObjectFieldsPanel
+
 class UsefulLinkUIViewSet(views.NautobotUIViewSet):
     queryset = UsefulLink.objects.all()
 

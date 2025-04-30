@@ -12,6 +12,16 @@ In today's challenge, we will continue on with part 2 of the Nautobot UI Compone
 
 We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
 
+```
+$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
+
 ## Code Example
 
 In our Codespace environment, there is already a `ExampleModelUIViewSet` in `example_app` that can be used as a reference for the rest of today's discussion: 

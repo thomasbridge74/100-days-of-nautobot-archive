@@ -6,6 +6,16 @@ Tables in Nautobot are used to display lists of data in a tabular format. Nautob
 
 We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
 
+```
+$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
+
 ### Key Components
 
 Here are the main components of Nautobot tables. 
@@ -15,7 +25,7 @@ Here are the main components of Nautobot tables.
 
 ### Example: Tables with HTML
 
-Let's do a bit of a review from [Day 68](../Day068_Nautobot_Views_3_Nautobot_Views/README.md) when we used a `ListView` for the first view of `UsefulLink` model with `UsefulLinkListView`: 
+Let's do a bit of a review from [Day 68](../Day068_Nautobot_Views_3_Nautobot_Views/README.md) when we used a `ListView` for the first view of `UsefulLink` model with `UsefulLinkListView` in `views.py`: 
 
 ```python
 class UsefulLinkListView(ListView): 
@@ -27,7 +37,7 @@ class UsefulLinkListView(ListView):
         return UsefulLink.objects.all()
 ```
 
-In that view, we referenced an HTML page that will render the view for the items when users access the content. We use an unordered list with `<ul>` to loop over the links: 
+In that view, we referenced an HTML page that will render the view for the items when users access the content. We use an unordered list with `<ul>` to loop over the links in the `useful_link_detail.html`: 
 
 ```html
 {% extends "base.html" %}
@@ -47,7 +57,7 @@ Here is a screenshot of the view:
 
 ![table_html_1](images/table_html_1.png)
 
-If we wanted to make the list in a more presentable table view, we can modify the HTML code accordingly with `table head <thead>` `table row <tr>` `table head <th>` and a few other table-related HTML formatting tags: 
+If we wanted to make the list in a more presentable table view, we can modify the HTML code accordingly with `table head <thead>` `table row <tr>` `table head <th>` and a few other table-related HTML formatting tags for the `useful_link_detail.html`: 
 
 ```html
 {% extends "base.html" %}
@@ -85,7 +95,7 @@ That is a lot of HTML just to make a simple table. We will need more styling to 
 Let's compare that to the `NautobotUIViewSet` that reference the same model with `table_class = tables.UsefulLinkModelTable`: 
 
 > [!INFORMATION]
-> We are not making any additional changes form previous days, just re-examining the code. 
+> We are not making any additional changes form previous days, just re-examining the code in the `views.py`. 
 
 ```python
 class UsefulLinkUIViewSet(views.NautobotUIViewSet):
@@ -94,7 +104,7 @@ class UsefulLinkUIViewSet(views.NautobotUIViewSet):
     ...
 ```
 
-The `UsefulLinkModelTable` inherent the `BaseTable` with Meta class indicating the model and the fields: 
+The `UsefulLinkModelTable` inherent the `BaseTable` with Meta class indicating the model and the fields in the `tables.py`: 
 
 ```python
 class UsefulLinkModelTable(BaseTable):

@@ -6,6 +6,15 @@ In today's challenge, we will dive deeper into understanding the configuration o
 
 We will use a combination of [Scenario 2](../Lab_Setup/scenario_2_setup/README.md) lab, [https://demo.nautobot.com/](https://demo.nautobot.com/), and [Nautobot Documentation](https://docs.nautobot.com/projects/core/en/latest/user-guide/core-data-model/overview/introduction/) for today's challenge. 
 
+```$ cd nautobot
+$ poetry shell
+$ poetry install
+$ invoke build
+(be patient with this step)
+$ invoke debug
+(be patient with this step as well)
+```
+
 ## URL Patterns
 
 URL patterns in Django, and consequently in Nautobot, are used to map URLs to views. This allows the application to respond to different URLs with appropriate views and actions. 
