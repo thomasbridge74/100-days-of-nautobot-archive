@@ -57,7 +57,7 @@ To make this view accessible, register it in **`urls.py`**.
 from django.urls import path
 from django.views.generic import RedirectView
 from django.templatetags.static import static
-from nautobot.apps.api import NautobotUIViewSetRouter
+from nautobot.apps.urls import NautobotUIViewSetRouter
 from nautobot_software_cves import views
 
 router = NautobotUIViewSetRouter()

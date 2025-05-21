@@ -30,7 +30,7 @@ nautobot-1  | Quit the server with CONTROL-C.
 ### **1. Implement a Custom API View**
 Since we are not using a dedicated data model for CVEs, we won’t be using a `ModelSerializer`. Instead, we’ll return the `cves` json data directly from the `custom_field_data` of each `SoftwareVersion`.
 
-Inside **`api/views.py`**, add the following code:
+Inside **`nautobot_software_cves/api/views.py`**, add the following code:
 
 ````python
 from django.shortcuts import get_object_or_404
@@ -59,13 +59,13 @@ class SoftwareVersionCVEsView(APIView):
 - Returns the `cves` as a JSON response.
 
 
-### **2. Add the Corresponding URL in `api/urls.py`**
+### **2. Add the Corresponding URL in `nautobot_software_cves/api/urls.py`**
 To make the view accessible via a REST endpoint, register it in the plugin’s **API URL config**.
 
 >[!TIP]
 > Delete or comment out the existing `urlpatterns` as shown below. 
 
-Inside **`api/urls.py`**, add:
+Inside **`nautobot_software_cves/api/urls.py`**, add:
 
 ````python
 from django.urls import path

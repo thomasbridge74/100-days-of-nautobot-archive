@@ -293,7 +293,7 @@ Let's leave the terminal window open, so we can observe all future messages gene
 
 There is one more thing we need to do regarding the CSRF setting (as we did in Day 47) due to the port forwarding set up in Codespace. 
 
-Use a separate terminal window to attach to the nautobot docker instance and make the following changes. Do not do this in product, we will only do this for the lab:
+Use a separate terminal window to attach to the nautobot docker instance and make the following changes. Do not do this in production, we will only do this for the lab:
 
 ```
 (nautobot-docker-compose-py3.10) @ericchou1 ➜ ~/nautobot-docker-compose (main) $ docker exec -it -u root nautobot-software-cves-nautobot-1 bash
@@ -310,6 +310,7 @@ root@1335a55d0eb1:/opt/nautobot# vim nautobot_config.py
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:8080", "https://localhost:8080"] 
 ```
+![csrf_trusted_origin](images/CSRF_Trusted_Origin.png)
 
 Next, we will open Nautobot in a separate browser window using the forwarded port. To do this, go to ```PORTS``` and click on the globe icon. 
 

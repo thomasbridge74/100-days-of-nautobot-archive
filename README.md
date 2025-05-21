@@ -93,12 +93,14 @@ Here is a partial list of all the contributors:
 - Kristee Trelli
 - Jeff Bradbury 
 - Israel Pineda (author of Days 21, 22)
-- Dwayne Camacho (co-author of Days 31, 34 - 39)
+- Dwayne Camacho (co-author of Days 31, 34 - 39, Community Contributor Highlight Day 98)
 - DJ Howard (co-author of Days 31, 34 - 39)
-- Byrns Baker (author of Days 23, 27, 33)
+- Byrns Baker (author of Days 23, 27, 33, Community Contributor Highlight Day 97)
 - Michael Milaitis (author of final Capstone CVE Tracker Project - Days 80 - 92)
 - Chritina Lang
 - Nolan Torres
-- Florian Lohden
+- Florian Loehden (Community Contributor Highlight Day 99, 100 Days Project Blogs)
+- Glenn Matthews (reviewer of Days 94 - 96)
+- Daria Kakolewska (reviewer of Days 94 - 96)
 - Nautobot Core and Application Team 
 - Nautobot's Awesome Community 

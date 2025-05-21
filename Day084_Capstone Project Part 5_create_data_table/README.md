@@ -42,7 +42,7 @@ nautobot-app-software-cves/
 This file will define the structure and behavior of the **CVE status table**.
 
 
-### **2. Insert the Following Code in `tables.py`**
+### **2. Insert the Following Code in `tables.py` if you chose "None" on Day 80 Step 9**
 ```python
 import django_tables2 as tables # pre-created
 from nautobot.apps.tables import BaseTable, ButtonsColumn, ToggleColumn # pre-created
@@ -56,9 +56,9 @@ class CveStatusTable(BaseTable):
         model = SoftwareVersion
         default_columns = ["platform", "version", "cves_count"]
 
-    platform = django_tables2.Column(linkify=True)
-    version = django_tables2.Column(linkify=True)
-    cves_count = django_tables2.Column(
+    platform = tables.Column(linkify=True)
+    version = tables.Column(linkify=True)
+    cves_count = tables.Column(
         verbose_name="CVEs Count",
         empty_values=(),
         orderable=False
@@ -76,7 +76,7 @@ class CveStatusTable(BaseTable):
 
 ```
 
-Here is the final version of `tables.py` with pre-existing code and new code: 
+Here is the final version of `tables.py` with pre-existing code and new code if you did not chose "None" on Day 80 Step 9: 
 
 ```python
 """Tables for nautobot_software_cves."""
