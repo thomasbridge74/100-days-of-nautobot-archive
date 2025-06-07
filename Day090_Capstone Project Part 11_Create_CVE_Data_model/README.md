@@ -51,7 +51,9 @@ We'll define a `CVE` model with a Many-to-Many relationship to `SoftwareVersion`
 
 ### Code Implementation
 
-In `models.py`: 
+Inside the **`nautobot_software_cves/`** directory, find the **`models.py`** file or create it if you chose "None" on Day 80 Step 9 and insert the following code:
+
+In `models.py`:
 
 ```python
 from django.db import models

@@ -97,7 +97,7 @@ The new view will **handle requests** to display the CVE details for a specific 
 - Specifies the template to be rendered in the `template_name` attribute.
 - Passes the **CVE data** to the template using `get_extra_context`.
 
-#### Insert the following code in `views.py` to define the new view:
+#### Inside the **`nautobot_software_cves/`** directory, find `views.py` or create it if you chose "None" on Day 80 Step 9 and insert the following code to define the new view:
 ```python
 from nautobot.apps import views
 from nautobot.dcim.models import SoftwareVersion

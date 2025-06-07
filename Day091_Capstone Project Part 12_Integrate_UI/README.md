@@ -66,7 +66,7 @@ This table defines how CVEs appear in list views.
 
 ## 2. Implementing the FilterSets
 
-**File**: `nautobot_software_cves/filters.py`
+**File**: `nautobot_software_cves/filters.py` (create this file if you chose "None" on Day 80 Step 9)
 
 ```python
 import django_filters
@@ -93,7 +93,7 @@ By using **NautobotFilterSet**, the filtering of the `CVE` table will automatica
 
 ## 3. Implementing the Forms
 
-**File**: `nautobot_software_cves/forms.py`
+**File**: `nautobot_software_cves/forms.py` (create this file if you chose "None" on Day 80 Step 9)
 
 ```python
 from django import forms
@@ -171,7 +171,7 @@ Just as we did before, we’re not overriding the entire template but just the `
 
 ## 5. Implementing the Serializers
 
-**File**: `nautobot_software_cves/serializers.py`
+**File**: `nautobot_software_cves/serializers.py` (create this file if you chose "None" on Day 80 Step 9)
 
 ```python
 from nautobot.apps.api import NautobotModelSerializer

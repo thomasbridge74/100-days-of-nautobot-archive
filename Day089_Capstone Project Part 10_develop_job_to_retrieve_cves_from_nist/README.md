@@ -125,14 +125,12 @@ class LoadCVEsJob(Job):
                 self.logger.info(f"Loading CVE {cve_name}", extra={"object": software})
                 cvss_versions = ['cvssMetricV32', 'cvssMetricV31', 'cvssMetricV30']
                 cvss_version = next(version for version in cvss_versions if version in cve['cve']['metrics'])
-                cve_obj, created = CVE.objects.get_or_create(
-                    name = cve_name,
-                    defaults = {
-                        'cvss' : cve['cve']['metrics'][cvss_version][0]['cvssData']['baseScore'],
-                        'severity' : cve['cve']['metrics'][cvss_version][0]['cvssData']['baseSeverity'].capitalize(),
-                        'link' : cve['cve']['references'][0]['url'],
-                    }
-                )
+                software.custom_field_data['cves'][cve_name] = {
+                     "cvss_base_score": cve['cve']['metrics'][cvss_version][0]['cvssData']['baseScore'],
+                     "link": cve['cve']['references'][0]['url'],
+                     "severity": cve['cve']['metrics'][cvss_version][0]['cvssData']['baseSeverity'],
+                 }
+                software.validated_save()
 
 
 jobs = [LoadCVEsJob]

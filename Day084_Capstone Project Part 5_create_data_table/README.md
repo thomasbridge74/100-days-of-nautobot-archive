@@ -30,7 +30,7 @@ nautobot-1  | Quit the server with CONTROL-C.
 ## **Implementation Steps**
 
 ### **1. Work with the `tables.py` File**
-Inside the **`nautobot_software_cves/`** directory, find the **`tables.py`** file that was created for us.
+Inside the **`nautobot_software_cves/`** directory, find the **`tables.py`** file file or create it if you chose "None" on Day 80 Step 9.
 
 ```
 nautobot-app-software-cves/

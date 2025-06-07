@@ -30,6 +30,8 @@ nautobot-1  | Quit the server with CONTROL-C.
 ### **1. Implement a Custom API View**
 Since we are not using a dedicated data model for CVEs, we won’t be using a `ModelSerializer`. Instead, we’ll return the `cves` json data directly from the `custom_field_data` of each `SoftwareVersion`.
 
+If you chose ‘None’ in Step 9 of Day 80, create a folder named `api` under the **`nautobot_software_cves/`** directory, and then create the files `views.py`, `urls.py`, and a blank `__init__.py` inside it.
+
 Inside **`nautobot_software_cves/api/views.py`**, add the following code:
 
 ````python
@@ -106,7 +108,6 @@ nautobot_software_cves/
 │       └── software_cves.html
 ├── tests
 │   ├── __init__.py
-│   ├── test_api.py
 │   └── test_basic.py
 ├── urls.py
 └── views.py

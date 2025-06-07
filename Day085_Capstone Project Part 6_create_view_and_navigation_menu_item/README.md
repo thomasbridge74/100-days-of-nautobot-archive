@@ -87,7 +87,7 @@ urlpatterns += router.urls
 ### **3. Add the View to the Nautobot Navigation Bar**
 To make the **CVE Status View** easily accessible, we will add it to the **Devices → Software** menu section.
 
-Inside **`nautobot_software_cves/navigation.py`**, add the following code:
+Inside the **`nautobot_software_cves/`** directory, find the **`navigation.py`** file or create it if you chose "None" on Day 80 Step 9 and add the following code:
 
 ````python
 from nautobot.apps.ui import NavMenuGroup, NavMenuItem, NavMenuTab

@@ -53,7 +53,7 @@ root@c9e0fa2a45a0:/opt/nautobot# cd jobs
 root@c9e0fa2a45a0:/opt/nautobot/jobs# pwd
 /opt/nautobot/jobs
 root@c9e0fa2a45a0:/opt/nautobot/jobs# touch job_hook_test.py
-root@c9e0fa2a45a0:/opt/nautobot/jobs# chown nautobot:nautobot ob_hook_test.py
+root@c9e0fa2a45a0:/opt/nautobot/jobs# chown nautobot:nautobot job_hook_test.py
 ```
 
 The environment is now setup for today's challenge.  
