@@ -196,6 +196,9 @@ The result page will display what we entered as the user:
 
 That is it for the Day 4 challenge!
 
+> [!TIP] 
+> If you run into any issues, here is a [Day 4 video walkthrough](https://www.youtube.com/watch?v=qv32HJxdEDc&list=PLAaTeRWIM_wtqWt3yIKmIFnfEarsuxaYs&index=3).
+
 ## Day 4 To Do
 
 Remember to stop and delete the Codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/).

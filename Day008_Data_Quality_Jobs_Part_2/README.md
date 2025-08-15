@@ -233,6 +233,10 @@ After enabling, we can run the job and check the results:
 
 This is just a simple example of using normal Python code that we are familiar with to enhance the functionality of jobs. As we will see later, we will use Python libraries such as ```csv``` to read CSV files, ```json``` to decode and encode JSON bodies, and the various API libraries to make outbound calls. 
 
+> [!TIP] 
+> If you run into any issues, here is a [Day 8 video walkthrough](https://www.youtube.com/watch?v=XD0uBRh_4Y4&list=PLAaTeRWIM_wtqWt3yIKmIFnfEarsuxaYs&index=1).
+
+
 ## Day 8 To Do
 
 Remember to stop and delete the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/). 

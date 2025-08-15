@@ -307,6 +307,9 @@ After enabling the jobs, we can see the results. In this case, the Boston device
 
 We did a lot in today's challenge, the fact we can access the database model in our job with just a few lines of code really goes a long way for our automation efforts. 
 
+> [!TIP] 
+> If you run into any issues, here is a [Day 7 video walkthrough](https://www.youtube.com/watch?v=LwLOjt9j1SI&list=PLAaTeRWIM_wtqWt3yIKmIFnfEarsuxaYs&index=2).
+
 ## Day 7 To Do
 
 Remember to stop the codespace instance on [https://github.com/codespaces/](https://github.com/codespaces/). 
